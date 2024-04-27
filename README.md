@@ -1,4 +1,4 @@
-# onemb_wallpapers
+# ONEMB Wallpapers Flutter
  Wallpaper app with flutter
 
 | Image 1 | Image 2 |
