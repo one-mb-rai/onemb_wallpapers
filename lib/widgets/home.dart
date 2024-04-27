@@ -1,35 +1,15 @@
-
-
 import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:onemb_wallpapers/widgets/WallpapersView.dart';
+import '../modals/WallpaperModal.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
   @override
   State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class Wallpaper {
-  final String name;
-  final String url;
-
-  const Wallpaper(this.name, this.url);
-
-  factory Wallpaper.fromJson(Map<String, dynamic> json) {
-    final name = json['name'] as String;
-    final url = json['url'] as String;
-    return Wallpaper(name, url);
-  }
-}
-
-class WallpapersArray {
-  final List<Wallpaper> wallpapers;
-
-  const WallpapersArray(this.wallpapers);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -85,10 +65,13 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         itemCount: keys.length,
         itemBuilder: (context, index) {
-          // String imageUrl = jsonArray!.entries.elementAt(index).value;
           return InkWell(
                 onTap: () {
-
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>
+                        WallpapersViewPage(title: keys.elementAt(index).toUpperCase().split("_").join(" "), wallpapersList: jsonArray.elementAt(index).values.first.toList(),)),
+                  );
                 },
                 child: SizedBox(
                   height: 10,
